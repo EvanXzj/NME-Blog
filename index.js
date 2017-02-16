@@ -3,6 +3,7 @@
 const express = require('express'),
       package_json = require('./package.json'),
       port    = process.env.PORT || 3000,
+      path    = require('path'),
       app     = express()
 
 const indexRouter = require('./routes/index')
@@ -16,6 +17,9 @@ const userRouter  = require('./routes/user')
 // app.get('/user/:name', function(req, res) {
 //   res.send('hello, ' + req.params.name)
 // })
+
+app.set('views',path.join(__dirname,'views'))               //设置视图文件目录
+app.set('view engine','ejs')                                //设置视图引擎
 
 app.use('/',indexRouter)
 app.use('/user',userRouter)
