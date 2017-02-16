@@ -1,0 +1,28 @@
+{
+  "name": "myblog",
+  "version": "1.0.0",
+  "description": "My First Blog",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EvanXzj/NME-Blog.git"
+  },
+  "keywords": [
+    "Evan",
+    "Node",
+    "MongoDB",
+    "Express"
+  ],
+  "author": "Evan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/EvanXzj/NME-Blog/issues"
+  },
+  "homepage": "https://github.com/EvanXzj/NME-Blog#readme",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
+}
