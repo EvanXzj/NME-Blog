@@ -7,7 +7,7 @@ const checkLogin = require('../middlewares/check').checkLogin
 
 router.get('/',(req,res,next) => {
     console.log('---------first url----------')
-     res.send(req.flash())
+     res.render('posts')
 })
 
 // POST /posts 发表一篇文章
