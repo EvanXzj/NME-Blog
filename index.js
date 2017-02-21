@@ -43,6 +43,12 @@ app.use(session({
   })
 }))
 
+// 处理表单及文件上传的中间件
+app.use(require('express-formidable')({
+  uploadDir: path.join(__dirname, 'public/img'),// 上传文件目录
+  keepExtensions: true// 保留后缀
+}))
+
 app.use(flash())                // flash 中间件，用来显示通知
 
 /* 在调用 res.render 的时候，express 合并（merge）了 3 处的结果后传入要渲染的模板，
