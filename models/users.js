@@ -6,5 +6,8 @@ module.exports =   {
     //新建一个用户
     create:(user) => {
         return User.create(user).exec()
+    },
+    getUserByName:(name) =>{
+        return User.findOne({name:name}).addCreatedAt().exec()
     }
 }
