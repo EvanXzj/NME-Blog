@@ -4,6 +4,8 @@ const express = require('express'),
       package_json = require('./package.json'),
       port    = process.env.PORT || 3000,
       path    = require('path'),
+      winston = require('winston'),                 //日志
+      expressWinston = require('express-winston'),
       app     = express()
 
 const session = require('express-session'),
@@ -71,9 +73,40 @@ app.use((req,res,next)=>{
     next()
 })
 
+// 正常请求的日志
+app.use(expressWinston.logger({
+  transports:[
+    new (winston.transports.Console)({
+      json:true,
+      colorize:true
+    }),
+    new winston.transports.File({
+      filename:'logs/success.log'
+    })
+  ]
+}))
 // 路由
 routes(app)
 //app.use('/user',userRouter)
+
+// 错误请求的日志
+app.use(expressWinston.logger({
+  transports:[
+    new (winston.transports.Console)({
+      json:true,
+      colorize:true
+    }),
+    new winston.transports.File({
+      filename:'logs/error.log'
+    })
+  ]
+}))
+
+app.use(function (err, req, res, next) {
+  res.render('error', {
+    error: err
+  })
+})
 
 app.listen(port,() => {
     console.log(`${package_json.description} running at http://127.0.0.1:${port}`)
