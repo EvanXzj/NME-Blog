@@ -108,7 +108,15 @@ app.use(function (err, req, res, next) {
   })
 })
 
-app.listen(port,() => {
-    console.log(`${package_json.description} running at http://127.0.0.1:${port}`)
-})
+// app.listen(port,() => {
+//     console.log(`${package_json.description} running at http://127.0.0.1:${port}`)
+// })
 
+//直接启动 index.js 则会监听端口启动程序，如果 index.js 被 require 了，则导出 app，通常用于测试
+if(module.parent){
+  module.exports = app
+}else{
+  app.listen(port,() => {
+      console.log(`${package_json.description} running at http://127.0.0.1:${port}`)
+  })
+}
